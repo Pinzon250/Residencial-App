@@ -12,7 +12,7 @@ export default function Layout ({ children }) {
                 <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
 
-            <div className="flex flex-col min-h-screen flex-1 lg:ml-[290px]">
+            <div className="flex flex-col min-h-screen flex-1 lg:ml-[250px]">
                 <Navbar setIsOpen={setIsOpen} isOpen={isOpen} />
                 <main className="flex-grow flex-1 relative">
                     {children}

@@ -12,9 +12,9 @@ export default function Navbar({ setIsOpen, isOpen }) {
   );
 
   return (
-    <header className="flex items-center justify-between z-50 relative py-3 border-b mx-2 border-gray-300/80 m-auto h-15">
+    <header className="flex items-center bg-white justify-between z-50 relative py-3 border-b border-gray-300/80 h-15">
       {/* Boton 3 barras */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center ml-3 space-x-3">
         {!isOpen && (
         <button className="lg:hidden" onClick={() => setIsOpen(true)}>
           <Bars3BottomLeftIcon className="h-7 w-7 " />
@@ -27,7 +27,7 @@ export default function Navbar({ setIsOpen, isOpen }) {
       </div>
 
       {/* iconos y usuario */}
-      <div className="flex items-center gap-6">
+      <div className="mr-4 flex items-center gap-6">
         {/* Notificaciones */}
         <div className="relative cursor-pointer">
           <BellIcon className="h-6 w-6 text-orange-500" />
@@ -49,7 +49,7 @@ export default function Navbar({ setIsOpen, isOpen }) {
 
       {/* Menu desplegable */}
       {menuOpen && (
-        <div className="absolute right-0 mt-30 w-50 px-1 rounded bg-orange-600 shadow-lg rounded-md py-1 z-50">
+        <div className="absolute right-0 mt-30 w-50 px-1 bg-orange-600 shadow-lg rounded-md py-1 z-50">
           <button
             onClick={() => navigate("/perfil")}
             className="block px-4 py-2 rounded-xl cursor-pointer text-md transition text-zinc-100 hover:text-zinc-200 w-full text-left"
