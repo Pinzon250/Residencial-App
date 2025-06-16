@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth/AuthContext';
 import axios from 'axios';
 
 export default function Login() {
@@ -71,7 +71,7 @@ export default function Login() {
             Iniciar sesion  
         </button>
         {error && (
-          <div className="text-red-500 text-sm font-bold my-4 text-center">{error}</div>
+          <div className="border border-red-500 mt-10 rounded p-4 text-red-500 text-sm font-semibold my-4 text-center">{error}</div>
         )}
       </form>
     </div>
