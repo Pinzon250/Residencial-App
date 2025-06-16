@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, UniqueConstraint
 from datetime import datetime
 from app.database.db import Base
 
@@ -16,8 +16,8 @@ class Usuario(Base):
     documento = Column(String, unique=True, nullable=False)
 
     # Informacion de residencia
-    torre = Column(String, unique=True, nullable=False)
-    apartamento = Column(String, unique=True, nullable=False)
+    torre = Column(String, nullable=False)
+    apartamento = Column(String, nullable=False)
 
     # Tipo de usuario (Administrador o residente)
     cargo = Column(String, default="residente")
@@ -36,3 +36,7 @@ class Usuario(Base):
     # Informacion de creacion de usuario
     fecha_creacion = Column(DateTime, default=datetime.utcnow)
     creado_por = Column(String)
+
+    __table_args__ = (
+        UniqueConstraint('torre', 'apartamento', name='uq_torre_apartamento'),
+    )

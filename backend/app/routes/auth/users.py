@@ -2,6 +2,7 @@
 # Dependencias
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
 # Importacion de schemas y modelos 
@@ -22,7 +23,7 @@ def login(datos: UserLogin, db: Session = Depends(get_db)):
 
     # Excepciones
     if not usuario:
-        raise HTTPException(status_code=401, detail="Credenciales incorrectas")
+        raise HTTPException(status_code=401, detail="Usuario o contraseña incorrectos")
     
     if not usuario.estado:
         raise HTTPException(status_code=403, detail="Cuenta suspendida")
@@ -61,31 +62,35 @@ def crear_usuario(usuario: UserCreate, db: Session = Depends(get_db)):
     # Verificar si ya existe el usuario
     if existente:
         raise HTTPException(status_code=400, detail="Usuario ya existente")
-    
+    try:   
     # Datos para registrarse
-    nuevo_usuario = Usuario(
-        usuario = usuario.usuario,
-        nombres = usuario.nombres,
-        apellidos = usuario.apellidos,
-        correo = usuario.correo,
-        telefono = usuario.telefono,
-        documento = usuario.documento,
-        torre = usuario.torre,
-        apartamento = usuario.apartamento,
-        cargo = usuario.cargo,
-        password_hash= hash_contraseña(usuario.password),
-        must_change_password=True,
-        creado_por = usuario.creado_por,
-        estado=True,
-        fecha_creacion = datetime.utcnow()
-    )
+        nuevo_usuario = Usuario(
+            usuario = usuario.usuario,
+            nombres = usuario.nombres,
+            apellidos = usuario.apellidos,
+            correo = usuario.correo,
+            telefono = usuario.telefono,
+            documento = usuario.documento,
+            torre = usuario.torre,
+            apartamento = usuario.apartamento,
+            cargo = usuario.cargo,
+            password_hash= hash_contraseña(usuario.password),
+            must_change_password=True,
+            creado_por = usuario.creado_por,
+            estado=True,
+            fecha_creacion = datetime.utcnow()
+        )
     
-    # Añadir usuarios a la base de datos
-    db.add(nuevo_usuario)
-    db.commit()
-    db.refresh(nuevo_usuario)
+        # Añadir usuarios a la base de datos
+        db.add(nuevo_usuario)
+        db.commit()
+        db.refresh(nuevo_usuario)
 
-    return nuevo_usuario
+        return nuevo_usuario
+    
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Ya existe un usario en esta torre y apartamento")
 
 
 
