@@ -44,9 +44,26 @@ export default function Login() {
       className="flex-col w-sm m-auto bg-white p-8 border border-black/10 shadow-xl rounded-md">
         <div className="flex items-center gap-2">
           <div className="h-3 w-3 bg-orange-400"></div>
-          <p className="font-bold pb-[2px]">Nombre del conjunto</p>
+          <p className="font-bold pb-1">Nombre del conjunto</p>
         </div>
         <div className="mt-10">
+          {error && (
+          <div className="peer-invalid:block">
+            <div className="border w-full p-4 bg-red-100 border-red-200 m-auto justify-center my-3 flex items-center gap-1">
+              <div className="w-4 fill-rose-500">
+                <svg
+                  viewBox="0 0 24 24"
+                  data-name="Layer 1"
+                  id="Layer_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M24,12A12,12,0,1,1,12,0,12.013,12.013,0,0,1,24,12ZM13,5H11V15h2Zm0,12H11v2h2Z"></path>
+                </svg>
+              </div>
+              <p className="Capitalize font-medium text-rose-500">{error}</p>
+            </div>
+          </div>
+        )}
           <h1 className="text-2xl font-semibold">¡Bienvenido de vuelta!</h1>
         </div>
         <p className="mt-4 text-sm">Breve descripcion sobre la residencia</p>
@@ -70,9 +87,7 @@ export default function Login() {
         <button type="submit" className="place-items-center bg-orange-500 text-white text-sm h-10 rounded-md mt-10 px-5 w-full cursor-pointer hover:bg-orange-700 transition duration-200">
             Iniciar sesion  
         </button>
-        {error && (
-          <div className="border border-red-500 mt-10 rounded p-4 text-red-500 text-sm font-semibold my-4 text-center">{error}</div>
-        )}
+        
       </form>
     </div>
   );

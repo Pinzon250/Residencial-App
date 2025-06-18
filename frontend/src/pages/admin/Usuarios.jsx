@@ -118,6 +118,23 @@ export default function Usuarios() {
         <h1 className="text-3xl font-bold text-orange-600 ">
           Gestión de Usuarios
         </h1>
+        {error && (
+          <div className="peer-invalid:block">
+            <div className="border rounded-xl px-4 py-2 bg-red-100 border-red-200 w-60 m-auto justify-center my-3 flex items-center gap-1">
+              <div className="w-4 fill-rose-500">
+                <svg
+                  viewBox="0 0 24 24"
+                  data-name="Layer 1"
+                  id="Layer_1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M24,12A12,12,0,1,1,12,0,12.013,12.013,0,0,1,24,12ZM13,5H11V15h2Zm0,12H11v2h2Z"></path>
+                </svg>
+              </div>
+              <p className="Capitalize font-medium text-rose-500">{error}</p>
+            </div>
+          </div>
+        )}
         <button
   title="Add New"
   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
@@ -137,23 +154,6 @@ export default function Usuarios() {
     <path d="M12 16V8" strokeWidth="1.5"></path>
   </svg>
 </button>
-        {error && (
-          <div className="peer-invalid:block">
-            <div className="border rounded-xl px-4 py-2 bg-red-100 border-red-200 w-60 m-auto justify-center my-3 flex items-center gap-1">
-              <div className="w-4 fill-rose-500">
-                <svg
-                  viewBox="0 0 24 24"
-                  data-name="Layer 1"
-                  id="Layer_1"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M24,12A12,12,0,1,1,12,0,12.013,12.013,0,0,1,24,12ZM13,5H11V15h2Zm0,12H11v2h2Z"></path>
-                </svg>
-              </div>
-              <p className="Capitalize font-medium text-rose-500">{error}</p>
-            </div>
-          </div>
-        )}
       </div>
 
       <div className="overflow-x-auto">

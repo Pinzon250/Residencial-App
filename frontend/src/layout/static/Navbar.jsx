@@ -17,7 +17,7 @@ export default function Navbar({ setIsOpen, isOpen }) {
       <div className="flex items-center ml-3 space-x-3">
         {!isOpen && (
         <button className="lg:hidden" onClick={() => setIsOpen(true)}>
-          <Bars3BottomLeftIcon className="h-7 w-7 " />
+          <Bars3BottomLeftIcon className="h-7 w-7 hover:text-zinc-500 transition cursor-pointer" />
         </button>
         )}
         <span className="text-xl font-semibold text-orange-500">

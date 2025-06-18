@@ -61,12 +61,12 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         {/* Mostrar la X solo si el sidebar está abierto */}
         {isOpen && (
           <button className="lg:hidden" onClick={() => setIsOpen(false)}>
-            <XMarkIcon className="h-6 w-6 text-white" />
+            <XMarkIcon className="h-6 w-6 text-white hover:text-zinc-500 transition cursor-pointer" />
           </button>
         )}
       </div>
-      <div className="py-3 px-4">
-        <h1 className="text-zinc-500 text-sm select-none">GENERAL</h1>
+      <div className="py-3 mx-5 border-t border-zinc-700">
+        <h1 className="text-zinc-400 text-sm select-none">GENERAL</h1>
       </div>
 
       <nav>
@@ -76,7 +76,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           <Link
             key={item.nombre}
             to={item.to}
-            className={`text-sm flex rounded-xl mx-2 my-1 items-center px-5 py-3 transition ${active ? "bg-zinc-700 text-orange-500" : "text-zinc-300 hover:text-orange-500 hover:bg-zinc-700"}`}
+            className={`text-sm flex rounded-xl mx-2 my-1 items-center px-5 py-3 transition ${active ? "bg-zinc-700 text-orange-500" : "text-zinc-300 hover:text-orange-500 hover:bg-zinc-600"}`}
           >
             <item.icon className="h-5 w-5 mr-2" />
             {item.nombre}
@@ -88,7 +88,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
     {user?.role === "administrador" && (
       <>
-      <div className="text-zinc-500 px-4 py-3 border-t mt-2 border-zinc-700">
+      <div className= "py-3 border-t mx-5 mt-2 border-zinc-700">
         <h1 className="text-zinc-400 text-sm mt-1 select-none">
           ADMINISTRACION
         </h1>
@@ -101,7 +101,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             key={adm.nombre}
             to={adm.to}
             className={`text-sm flex rounded-xl mx-2 my-1 items-center px-5 py-3  transition ${active ? "bg-zinc-700 text-orange-500"
-              : "text-zinc-300 hover:bg-zinc-700 hover:text-orange-500"
+              : "text-zinc-300 hover:bg-zinc-600 hover:text-orange-500"
             }`}
           >
             <adm.icon className="h-5 w-5 mr-2" />
